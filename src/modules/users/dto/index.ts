@@ -32,7 +32,6 @@ export class CreateUserDTO {
 }
 
 export class UpdateUserDTO{
-
   @ApiProperty()
   @IsString()
   firstName: string;
@@ -43,9 +42,7 @@ export class UpdateUserDTO{
   @IsString()
   email: string;
 
-  @ApiProperty()
-  @IsString()
-  password: string;
+
   @ApiProperty()
   @IsString()
   pin: string;
@@ -55,6 +52,4 @@ export class UpdateUserDTO{
   telegram: string;
   // @IsString()
   // list: string;
-
-
 }
