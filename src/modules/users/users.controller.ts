@@ -9,6 +9,7 @@ import { ApiResponse, ApiTags } from "@nestjs/swagger";
 export class UsersController {
   constructor(private readonly userService:UsersService) {}
 
+  
   @ApiTags("API")
   @ApiResponse({status:200,type:UpdateUserDTO})
   @UseGuards(JwtAuthGuard)
