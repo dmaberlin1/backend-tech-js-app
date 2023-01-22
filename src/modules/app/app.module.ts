@@ -8,6 +8,8 @@ import configurations from "../../configurations";
 import { User } from "../users/models/user.model";
 import { AuthModule } from "../auth/auth.module";
 import { TokenModule } from "../token/token.module";
+import { WatchlistModule } from "../watchlist/watchlist.module";
+import { Watchlist } from "../watchlist/models/watchlist.model";
 
 //Рутовый модуль, если мы создаём какой то новый модуль, обязательно его добавляем
 // в противном случае nest js о нём не будет знать
@@ -29,12 +31,13 @@ import { TokenModule } from "../token/token.module";
         database: configService.get("db_name"),
         synchronize: true,
         autoLoadModels: true,
-        models: [User]
+        models: [User,Watchlist]
       })
     }),
     UsersModule,
     AuthModule,
-    TokenModule],
+    TokenModule,
+  WatchlistModule],
   controllers: [AppController],
   providers: [AppService]
 })

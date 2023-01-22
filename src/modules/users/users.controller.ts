@@ -9,7 +9,7 @@ import { ApiResponse, ApiTags } from "@nestjs/swagger";
 export class UsersController {
   constructor(private readonly userService:UsersService) {}
 
-  
+
   @ApiTags("API")
   @ApiResponse({status:200,type:UpdateUserDTO})
   @UseGuards(JwtAuthGuard)
@@ -22,7 +22,7 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Delete()
-  deleteUser(@Req() request) {
+  deleteUser(@Req() request) :Promise<boolean>{
     const user=request.user
     return this.userService.deleteUser(user.email)
 
