@@ -5,8 +5,16 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import {ValidationPipe} from "@nestjs/common";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule,{
+    cors:{
+      origin:[
+        'http://localhost.localdomain:3001',
+        'http://localhost.localdomain:3000'
+      ]
+    }
+  });
   const configService = app.get(ConfigService);
+
   //ссылку на конфиг сервис, я положил в переменную configService
   const port = configService.get("port");
   app.useGlobalPipes(new ValidationPipe())
