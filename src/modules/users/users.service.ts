@@ -6,6 +6,7 @@ import { CreateUserDTO } from "./dto";
 import { AppError } from "../../common/constants/errors";
 import { UpdateUserDTO } from "./dto";
 import { JwtAuthGuard } from "../../guards/jwt-guards";
+import { Watchlist } from "../watchlist/models/watchlist.model";
 
 @Injectable()
 export class UsersService {
@@ -44,7 +45,11 @@ export class UsersService {
   async publicUser(email: string) {
     return this.userRepository.findOne({
       where: { email: email },
-      attributes: { exclude: ["password"] }
+      attributes: { exclude: ["password"] },
+      include:{
+        model:Watchlist,
+        required:false
+      }
     });
   }
 
@@ -53,7 +58,7 @@ export class UsersService {
     return dto;
   }
 
-  async deleteUser (email:string){
+  async deleteUser (email:string):Promise<boolean>{
     await  this.userRepository.destroy({where:{email:email}})
     return true
   }
