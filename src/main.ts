@@ -7,6 +7,7 @@ import {ValidationPipe} from "@nestjs/common";
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
+
   //ссылку на конфиг сервис, я положил в переменную configService
   const port = configService.get("port");
   app.useGlobalPipes(new ValidationPipe())
@@ -22,7 +23,7 @@ async function bootstrap() {
   //передаём префикс, который используеться для входа на страницу доки;экземпляр нашего приложения;полный
   //екземпляр документа созданный  выше
 
-  await app.listen(3000);
+  await app.listen(port);
 }
 
 bootstrap();
